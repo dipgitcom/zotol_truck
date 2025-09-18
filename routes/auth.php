@@ -30,15 +30,16 @@ Route::middleware('guest')->group(function () {
     // Send OTP
     Route::post('forgot-password', [PasswordOtpController::class, 'sendOtp'])->name('password.sendOtp');
 
-    // Verify OTP
-    Route::get('verify-otp', [PasswordOtpController::class, 'showVerifyForm'])->name('password.otp.verifyForm');
-    Route::post('verify-otp', [PasswordOtpController::class, 'verifyOtp'])->name('password.otp.verify');
+    // Password Reset OTP
+Route::get('password/verify-otp', [PasswordOtpController::class, 'showVerifyForm'])->name('password.otp.verifyForm');
+Route::post('password/verify-otp', [PasswordOtpController::class, 'verifyOtp'])->name('password.otp.verify');
 
-    // Email OTP Verification for registration (should be accessible to guest)
-   Route::get('/verify-otp', [App\Http\Controllers\Auth\OtpVerificationController::class, 'showForm'])->name('verify.otp.form');
-   Route::post('/verify-otp', [App\Http\Controllers\Auth\OtpVerificationController::class, 'verify'])->name('verify.otp.verify');
-   Route::post('/verify-otp/resend', [App\Http\Controllers\Auth\OtpVerificationController::class, 'resend'])
-      ->middleware('throttle:3,1')->name('verify.otp.resend');
+// Registration OTP
+Route::get('register/verify-otp', [App\Http\Controllers\Auth\OtpVerificationController::class, 'showForm'])->name('verify.otp.form');
+Route::post('register/verify-otp', [App\Http\Controllers\Auth\OtpVerificationController::class, 'verify'])->name('verify.otp.verify');
+Route::post('register/verify-otp/resend', [App\Http\Controllers\Auth\OtpVerificationController::class, 'resend'])
+   ->middleware('throttle:3,1')->name('verify.otp.resend');
+
 
 
     // Reset new password

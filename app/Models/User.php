@@ -24,6 +24,26 @@ class User extends Authenticatable implements JWTSubject
         'profile_photo', // profile photo
         'email_otp', // hashed otp
         'email_otp_expires_at', // expiry
+        // Newly added fields
+        'phone_number',
+        'short_bio',
+        'address',
+        'work_info',
+        'operate_truck',
+        'dot_license_file',
+        'dot_verified',
+        'height',
+        'height_unit',
+        'weight',
+        'weight_unit',
+        'gender',
+        'race',
+        'sexual_preferences',
+        'hiv_status',
+        'dob',
+        'relationship_status',
+        'social_links',
+        'role',
     ];
 
     /**
