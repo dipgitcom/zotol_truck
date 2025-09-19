@@ -10,6 +10,7 @@
 <link rel="icon" href="{{ asset(get_setting('APP_FAVICON', 'backend/uploads/settings/favicon.ico')) }}?v={{ time() }}">
 <link rel="shortcut icon" href="{{ asset(get_setting('APP_FAVICON', 'backend/uploads/settings/favicon.ico')) }}?v={{ time() }}">
 
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
     <!-- Styles -->
     @include('backend.partials.style')

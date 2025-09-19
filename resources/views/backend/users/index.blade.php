@@ -6,7 +6,7 @@
 <div class="container-fluid py-4">
     <div class="row g-4">
         <!-- Left Panel: Users List -->
-        <div class="col-lg-5">
+        <div class="col-lg-5 animate__animated animate__fadeInLeft">
             <div class="card shadow border-0 rounded-3">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0 fw-bold text-white">
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Right Panel: User Details -->
-        <div class="col-lg-7">
+        <div class="col-lg-7 @if(isset($selectedUser)) animate__animated animate__fadeInRight @endif">
             <div class="card shadow border-0 rounded-3">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0 fw-bold text-white">

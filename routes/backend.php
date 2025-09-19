@@ -1,14 +1,14 @@
 <?php
+
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DynamicPageController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\FaqController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Route;
 
 // Dashboard - only authenticated users
 Route::get('/', function () {
@@ -44,7 +44,7 @@ Route::prefix('settings')->middleware(['auth'])->group(function () {
     Route::post('/mail', [SettingsController::class, 'mailstore'])->name('settings.mail.update');
     Route::get('/settings/admin', [SettingsController::class, 'admin'])->name('settings.admin');
     Route::post('/settings/admin', [SettingsController::class, 'updateAdmin'])->name('settings.admin.update');
-    
+
 });
 
 // User Profile and Management - only Admin
@@ -52,13 +52,13 @@ Route::prefix('users')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');        // /users
     Route::get('/create', [UserController::class, 'create'])->name('users.create'); // /users/create
     Route::post('/', [UserController::class, 'store'])->name('users.store');        // /users
-    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit');// /users/{user}/edit
-    Route::put('/{user}', [UserController::class, 'update'])->name('users.update');// /users/{user}
-    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy');// /users/{user}
-    
+    Route::get('/{user}/edit', [UserController::class, 'edit'])->name('users.edit'); // /users/{user}/edit
+    Route::put('/{user}', [UserController::class, 'update'])->name('users.update'); // /users/{user}
+    Route::delete('/{user}', [UserController::class, 'destroy'])->name('users.destroy'); // /users/{user}
+
 });
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 
     // Admin CRUD
@@ -68,7 +68,6 @@ Route::middleware(['auth'])->group(function() {
     Route::put('/faq/{faq}', [FaqController::class, 'update'])->name('faq.update');
     Route::delete('/faq/{faq}', [FaqController::class, 'destroy'])->name('faq.destroy');
 });
-
 
 // Categories - only Admin
 Route::middleware(['auth'])->group(function () {
@@ -90,6 +89,3 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
 });
-
-
-
