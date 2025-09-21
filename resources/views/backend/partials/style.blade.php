@@ -29,12 +29,13 @@
 }
 
 .nav-link.collapsed .arrow-icon {
-    transform: rotate(0deg); /* dropdown closed → arrow points down */
+    transform: rotate(0deg); /* closed → arrow points down */
 }
 
 .nav-link:not(.collapsed) .arrow-icon {
-    transform: rotate(-180deg); /* dropdown open → arrow points up */
+    transform: rotate(-180deg); /* open → arrow points up */
 }
+
 
 </style>
 

@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class PermissionSeeder extends Seeder
 {
@@ -44,6 +44,14 @@ class PermissionSeeder extends Seeder
 
             // Settings
             'settings_manage',
+
+           
+            // Social Networking (Add these)
+            'social_view',
+            'social_create',
+            'posts_manage',
+            'comments_manage',
+            'tags_manage',
         ];
 
         // Create permissions
@@ -53,7 +61,7 @@ class PermissionSeeder extends Seeder
 
         // Create roles
         $adminRole = Role::firstOrCreate(['name' => 'Admin']);
-        $userRole  = Role::firstOrCreate(['name' => 'User']);
+        $userRole = Role::firstOrCreate(['name' => 'User']);
 
         // Assign all permissions to Admin
         $adminRole->syncPermissions(Permission::all());

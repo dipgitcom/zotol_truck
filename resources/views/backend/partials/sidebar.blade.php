@@ -20,6 +20,8 @@
 <!-- Optional: Google Font (add once in master layout) -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 
+
+
 <!-- Inline CSS for hover effects -->
 <style>
 .sidebar-brand:hover {
@@ -65,8 +67,9 @@
                 @canany(['dynamic_view', 'dynamic_create'])
                 <li class="nav-item">
                     <a class="nav-link has-arrow {{ request()->routeIs('dynamic.*') ? '' : 'collapsed' }}"
-                       href="#!"
+                       href="#navDynamicPages"
                        data-bs-toggle="collapse"
+                       role = "button"
                        data-bs-target="#navDynamicPages"
                        aria-expanded="{{ request()->routeIs('dynamic.*') ? 'true' : 'false' }}"
                        aria-controls="navDynamicPages">
@@ -98,8 +101,9 @@
                 @can('settings_manage')
                 <li class="nav-item">
                     <a class="nav-link has-arrow {{ request()->routeIs('settings.*') ? '' : 'collapsed' }}"
-                       href="#!"
+                       href="#navSettings"
                        data-bs-toggle="collapse"
+                       role = "button"
                        data-bs-target="#navSettings"
                        aria-expanded="{{ request()->routeIs('settings.*') ? 'true' : 'false' }}"
                        aria-controls="navSettings">
@@ -127,8 +131,9 @@
                 @canany(['user_view','user_create'])
                 <li class="nav-item">
                     <a class="nav-link has-arrow {{ request()->routeIs('users.*') ? '' : 'collapsed' }}"
-                       href="#!"
+                       href="#navUsers"
                        data-bs-toggle="collapse"
+                          role = "button"
                        data-bs-target="#navUsers"
                        aria-expanded="{{ request()->routeIs('users.*') ? 'true' : 'false' }}"
                        aria-controls="navUsers">
@@ -156,12 +161,65 @@
                 </li>
                 @endcanany
 
+<!-- Social Networking -->
+@canany(['social_view', 'social_create', 'posts_manage', 'comments_manage', 'tags_manage'])
+<li class="nav-item">
+    <div class="navbar-heading">Social Networking</div>
+</li>
+
+<!-- Posts -->
+@can('posts_manage')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('posts.*') ? 'active' : 'collapsed' }}"
+       href="#navPosts" data-bs-toggle="collapse" role = "buttom" data-bs-target="#navPosts"
+       aria-expanded="{{ request()->routeIs('posts.*') ? 'true' : 'false' }}" aria-controls="navPosts">
+        <i data-feather="file-text" class="nav-icon me-2 icon-xxs"></i> Posts 
+        
+    </a>
+    <div id="navPosts" class="collapse {{ request()->routeIs('posts.*') ? 'show' : '' }}" data-bs-parent="#sideNavbar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('posts.index') ? 'active' : '' }}" href="{{ route('posts.index') }}">
+                    All Posts
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->routeIs('posts.create') ? 'active' : '' }}" href="{{ route('posts.create') }}">
+                    Create Post
+                </a>
+            </li>
+        </ul>
+    </div>
+</li>
+@endcan
+
+<!-- Comments -->
+@can('comments_manage')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('comments.*') ? 'active' : '' }}" href="{{ route('comments.index') }}">
+        <i data-feather="message-circle" class="nav-icon me-2 icon-xxs"></i> Comments
+    </a>
+</li>
+@endcan
+
+<!-- Tags -->
+@can('tags_manage')
+<li class="nav-item">
+    <a class="nav-link {{ request()->routeIs('tags.*') ? 'active' : '' }}" href="{{ route('tags.index') }}">
+        <i data-feather="tag" class="nav-icon me-2 icon-xxs"></i> Tags
+    </a>
+</li>
+@endcan
+@endcanany
+
+
                 <!-- Categories -->
                 @canany(['category_view','category_create'])
                 <li class="nav-item">
                     <a class="nav-link has-arrow {{ request()->routeIs('categories.*') ? '' : 'collapsed' }}"
-                       href="#!"
+                       href="#navCategories"
                        data-bs-toggle="collapse"
+                          role = "button"
                        data-bs-target="#navCategories"
                        aria-expanded="{{ request()->routeIs('categories.*') ? 'true' : 'false' }}"
                        aria-controls="navCategories">
@@ -193,8 +251,9 @@
                 @canany(['role_view','role_create'])
                 <li class="nav-item">
                     <a class="nav-link has-arrow {{ request()->routeIs('roles.*') ? '' : 'collapsed' }}"
-                       href="#!"
+                       href="#navRoles"
                        data-bs-toggle="collapse"
+                       role = "button"
                        data-bs-target="#navRoles"
                        aria-expanded="{{ request()->routeIs('roles.*') ? 'true' : 'false' }}"
                        aria-controls="navRoles">

@@ -9,6 +9,10 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TagController;
+
 
 // Dashboard - only authenticated users
 Route::get('/', function () {
@@ -89,3 +93,30 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/roles/{role}', [RoleController::class, 'destroy'])->name('roles.destroy');
 
 });
+
+
+
+
+//Posts - Authenticated Users
+Route::middleware('auth')->group(function () {
+    Route::resource('posts', PostController::class);
+
+     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+     Route::post('/posts', [PostController::class, 'create'])->name('posts.create');
+     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+});
+
+
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/comments', [CommentController::class, 'index'])->name('comments.index');
+    Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('tags', TagController::class);
+});
+
+
