@@ -53,9 +53,10 @@
               <td>
                 <div class="d-flex flex-wrap gap-1">
                   @forelse($post->media as $media)
-                    <img src="{{ asset('storage/' . $media->media_url) }}" 
-                         class="rounded-3 border" 
-                         style="height:40px;width:40px;object-fit:cover;">
+                    <img src="{{ Storage::url($media->media_url) }}" 
+     class="rounded-3 border" 
+     style="height:40px;width:40px;object-fit:cover;">
+
                   @empty
                     <span class="text-muted">--</span>
                   @endforelse
